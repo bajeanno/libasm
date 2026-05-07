@@ -1,17 +1,28 @@
-global ft_strcpy
+global _ft_strcpy
 
 section .text
 
-ft_strcpy:
-; copy rsi in rdi
+_ft_strcpy:
 	mov rax, rdi
+
 .compare_and_copy:
+	mov cl, byte [rsi]
+	mov byte [rdi], cl
 	cmp byte [rsi], 0
 	je .done
-	mov [rdi], [rsi]
 	inc rdi
 	inc rsi
 	jmp .compare_and_copy
 
-.done:	
+.done:
 	ret
+
+
+
+
+
+
+
+
+
+
