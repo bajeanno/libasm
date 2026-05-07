@@ -1,16 +1,16 @@
-global _ft_strlen
+global ft_strlen
 
 section .text
 
-_ft_strlen:
+ft_strlen:
 	mov rax, rdi
 
-.L1:
+.compare:
 	cmp byte [rax], 0
-	je .L2
+	je .done
 	inc rax
-	jmp .L1
+	jmp .compare
 
-.L2:
+.done:
 	sub rax, rdi
 	ret

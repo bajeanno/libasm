@@ -2,7 +2,8 @@ NAME = libasm.a
 
 SRC_C		=	main.c
 
-SRC_ASM		=	ft_strlen.s
+SRC_ASM		=	ft_strlen.s \
+				ft_strcpy.s
 
 HEADER	 	=	libasm.h
 
