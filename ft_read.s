@@ -3,7 +3,7 @@ extern __errno_location
 
 section .text
 
-ft_read
+ft_read:
 	; rdi -> filedes
 	; rsi -> buffer
 	; rdx -> nbyte

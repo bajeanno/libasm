@@ -6,7 +6,7 @@ global ft_strdup
 
 section .text
 
-ft_strdup
+ft_strdup:
 	; rdi -> source string to duplicate
 	push rdi
 
