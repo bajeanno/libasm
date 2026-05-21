@@ -19,12 +19,13 @@ OBJS_D	=	./
 SRCS_D	=	./
 OBJ		=	$(SRC_ASM:%.s=%.o)
 AR		=	ar rcs
+LINK	=	ranlib
 
 all : $(NAME)
 
 $(NAME) : $(OBJ)
 	$(AR) $(NAME) $(OBJ)
-	ranlib $(NAME)
+	$(LINK) $(NAME)
 
 $(OBJ)	: $(OBJS_D)%.o: $(SRCS_D)%.s
 	$(ASMXX) $(ASM_FLAGS) $< -o $@
