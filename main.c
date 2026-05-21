@@ -16,58 +16,7 @@ void test_ft_strdup();
 void test_ft_write();
 void test_ft_read();
 
-int index_in_base(char c, char *base) {
-	int i = 0;
-	while (base[i]) {
-		if (base[i] == c) {
-			return i;
-		}
-		++i;
-	}
-	return -1;
-}
-
-bool base_is_valid(char *base) {
-	int index1 = 0;
-	int index2 = 0;
-
-	while (base[index1]) {
-		while (base[index2]) {
-			if (base[index1] == base[index2]) {
-				if (index1 == index2) {
-					index2++;
-					continue;
-				}
-				return false;
-			}
-			index2++;
-		}
-		index1++;
-	}
-	return true;
-}
-
-int ft_atoi_base2(char *str, char *base) {
-	int result = 0;
-	int i = 0;
-	int index;
-
-	if (base_is_valid(base) == false)
-		return -1;
-
-	while (str[i] != 0) {
-		index = index_in_base(str[i], base);
-		if (index == -1)
-			break;
-		result += index;
-		result *= strlen(base);
-		++i;
-	}
-	return result;
-}
-
 int main() {
-	printf("%d\n", ft_atoi_base2("1000000", "01"));
 	test_ft_strlen();
 	test_ft_strcpy();
 	test_ft_strcmp();
