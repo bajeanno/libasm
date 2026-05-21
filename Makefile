@@ -13,12 +13,10 @@ SRC_ASM		=	ft_strlen.s \
 HEADER	 	=	libasm.h
 
 CXX			=	cc
-CXXFLAGS	=	-MD
 ASMXX		=	nasm
 ASM_FLAGS	=	-felf64
 OBJS_D	=	./
 SRCS_D	=	./
-DEPENDS	=	$(SRC_ASM:%.s=%.d)
 OBJ		=	$(SRC_ASM:%.s=%.o)
 AR		=	ar rcs
 
@@ -37,16 +35,14 @@ test: $(SRC_C) $(NAME)
 
 clean:
 	rm -rf $(OBJ)
-	rm -rf $(DEPENDS)
 
 fclean: clean
 	rm -rf $(NAME)
 	rm -rf $(TEST_TARGET)
+	rm -rf test_write.txt
+	rm -rf test_write2.txt
 
 re: fclean all
-
-run: all
-	@./$(NAME)
 
 linux-docker: Dockerfile
 	docker build --platform linux/amd64 --no-cache -t linux-dev .
@@ -54,5 +50,3 @@ run-docker: Dockerfile
 	docker run --platform linux/amd64 -it -v "/Users/basil/42/ft_libasm":/home/dev/workspace linux-dev
 
 .PHONY: all clean fclean re linux-docker run-docker
-
--include $(DEPENDS)
