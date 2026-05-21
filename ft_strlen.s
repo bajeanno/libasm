@@ -1,8 +1,9 @@
-global _ft_strlen
+global ft_strlen
 
 section .text
 
-_ft_strlen:
+ft_strlen:
+	; rdi -> string to count length on
 	mov rax, rdi
 
 .compare:

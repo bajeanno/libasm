@@ -1,8 +1,10 @@
-global _ft_strcpy
+global ft_strcpy
 
 section .text
 
-_ft_strcpy:
+ft_strcpy:
+	; rdi -> destination string pointer
+	; rsi -> source string pointer
 	mov rax, rdi
 
 .compare_and_copy:
@@ -16,13 +18,3 @@ _ft_strcpy:
 
 .done:
 	ret
-
-
-
-
-
-
-
-
-
-

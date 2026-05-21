@@ -4,3 +4,4 @@
 *.out
 .idea
 .asm-lsp.toml
+Dockerfile

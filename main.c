@@ -1,18 +1,146 @@
 #include <assert.h>
 #include "libasm.h"
+#include <errno.h>
+#include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/fcntl.h>
+#include <stdbool.h>
+
+void test_ft_strlen();
+void test_ft_strcpy();
+void test_ft_strcmp();
+void test_ft_strdup();
+void test_ft_write();
+void test_ft_read();
+
+int index_in_base(char c, char *base) {
+	int i = 0;
+	while (base[i]) {
+		if (base[i] == c) {
+			return i;
+		}
+		++i;
+	}
+	return -1;
+}
+
+bool base_is_valid(char *base) {
+	int index1 = 0;
+	int index2 = 0;
+
+	while (base[index1]) {
+		while (base[index2]) {
+			if (base[index1] == base[index2]) {
+				if (index1 == index2) {
+					index2++;
+					continue;
+				}
+				return false;
+			}
+			index2++;
+		}
+		index1++;
+	}
+	return true;
+}
+
+int ft_atoi_base2(char *str, char *base) {
+	int result = 0;
+	int i = 0;
+	int index;
+
+	if (base_is_valid(base) == false)
+		return -1;
+
+	while (str[i] != 0) {
+		index = index_in_base(str[i], base);
+		if (index == -1)
+			break;
+		result += index;
+		result *= strlen(base);
+		++i;
+	}
+	return result;
+}
 
 int main() {
-	char *str = "Salut florian!";
-	char str2[] = "Salut florian test!";
-	assert(ft_strlen(str) == 14);
-	printf("test 1: good\n");
-	assert(ft_strlen(str2) == 19);
-	printf("test 2: good\n");
-	assert(ft_strlen("") == 0);
-	printf("test 3: good\n");
-	assert(ft_strcpy(str2, str) == str2);
-	printf("test 4: good\n");
-	printf("%s\n", str2);
+	printf("%d\n", ft_atoi_base2("1000000", "01"));
+	test_ft_strlen();
+	test_ft_strcpy();
+	test_ft_strcmp();
+	test_ft_strdup();
+	test_ft_write();
+	test_ft_read();
 	return 0;
+}
+
+void test_ft_strlen() {
+	char *str1 = "Hello world";
+	char *str2 = "";
+	assert(ft_strlen(str1) == strlen(str1));
+	assert(ft_strlen(str2) == strlen(str2));
+	printf("ft_strlen tests passed!\n");
+}
+
+void test_ft_strcpy() {
+	char dest1[20];
+	char dest2[20];
+	char *src = "Test string";
+	assert(ft_strcpy(dest1, src) == dest1);
+	strcpy(dest2, src);
+	assert(strcmp(dest1, dest2) == 0);
+	printf("ft_strcpy tests passed!\n");
+}
+
+void test_ft_strcmp() {
+	char *s1 = "abc";
+	char *s2 = "abc";
+	char *s3 = "abd";
+	char *s4 = "abb";
+	assert(ft_strcmp(s1, s2) == strcmp(s1, s2));
+	assert(ft_strcmp(s1, s3) == strcmp(s1, s3));
+	assert(ft_strcmp(s1, s4) == strcmp(s1, s4));
+	printf("ft_strcmp tests passed!\n");
+}
+
+void test_ft_strdup() {
+	char *src = "Duplicate me";
+	char *dest = ft_strdup(src);
+	assert(strcmp(src, dest) == 0);
+	free(dest);
+	printf("ft_strdup tests passed!\n");
+}
+
+void test_ft_write() {
+	int fd = open("test_write.txt", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	char *str = "Writing test";
+	ssize_t ret1 = ft_write(fd, str, strlen(str));
+	close(fd);
+
+	fd = open("test_write2.txt", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	ssize_t ret2 = write(fd, str, strlen(str));
+	close(fd);
+
+	assert(ret1 == ret2);
+	printf("ft_write tests passed!\n");
+}
+
+void test_ft_read() {
+	int fd = open("test_write.txt", O_RDONLY);
+	char buf1[20] = {0};
+	char buf2[20] = {0};
+
+	ssize_t ret1 = ft_read(fd, buf1, 5);
+	close(fd);
+
+	fd = open("test_write.txt", O_RDONLY);
+	ssize_t ret2 = read(fd, buf2, 5);
+	close(fd);
+
+	assert(ret1 == ret2);
+	assert(strcmp(buf1, buf2) == 0);
+	printf("ft_read tests passed!\n");
 }
