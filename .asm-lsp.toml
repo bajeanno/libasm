@@ -1,4 +1,0 @@
-disable = true
-[default_config]
-assembler = "nasm"
-instruction_set = "x86"
