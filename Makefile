@@ -1,4 +1,5 @@
 NAME = libasm.a
+TEST_TARGET = test.out
 
 SRC_C		=	main.c
 
@@ -17,7 +18,7 @@ ASMXX		=	nasm
 ASM_FLAGS	=	-felf64
 OBJS_D	=	./
 SRCS_D	=	./
-# DEPENDS	=	$(SRC:%.c=%.d)
+DEPENDS	=	$(SRC_ASM:%.s=%.d)
 OBJ		=	$(SRC_ASM:%.s=%.o)
 AR		=	ar rcs
 
@@ -31,8 +32,8 @@ $(OBJ)	: $(OBJS_D)%.o: $(SRCS_D)%.s
 	$(ASMXX) $(ASM_FLAGS) $< -o $@
 
 test: $(SRC_C) $(NAME)
-	$(CXX) $(CXXFLAGS) $(SRC_C) $(NAME) -o test.out -I HEADER
-	./test.out
+	$(CXX) $(CXXFLAGS) $(SRC_C) $(NAME) -o $(TEST_TARGET) -I HEADER
+	./$(TEST_TARGET)
 
 clean:
 	rm -rf $(OBJ)
@@ -40,6 +41,7 @@ clean:
 
 fclean: clean
 	rm -rf $(NAME)
+	rm -rf $(TEST_TARGET)
 
 re: fclean all
 
@@ -51,6 +53,6 @@ linux-docker: Dockerfile
 run-docker: Dockerfile
 	docker run --platform linux/amd64 -it -v "/Users/basil/42/ft_libasm":/home/dev/workspace linux-dev
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re linux-docker run-docker
 
-# -include $(DEPENDS)
+-include $(DEPENDS)
