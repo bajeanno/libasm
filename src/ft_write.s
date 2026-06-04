@@ -15,11 +15,11 @@ ft_write:
 	ret
 
 .error:
-    push rsi
-	neg rax
-	mov rsi, rax
+	push rbx
+	neg eax
+	mov ebx, eax
 	call __errno_location wrt ..plt
-	mov [rax], rsi 
+	mov dword [rax], ebx
 	mov rax, -1
-	pop rsi
+	pop rbx
 	ret

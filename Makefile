@@ -51,6 +51,6 @@ re: fclean all
 linux-docker: Dockerfile
 	docker build --platform linux/amd64 --no-cache -t linux-dev .
 run-docker: Dockerfile
-	docker run --platform linux/amd64 -it -v "/Users/basil/42/ft_libasm":/home/dev/workspace linux-dev
+	docker run --platform linux/amd64 -it -v "$(CURDIR)":/home/dev/libasm -w /home/dev/libasm linux-dev
 
 .PHONY: all clean fclean re linux-docker run-docker

@@ -3,7 +3,7 @@
 #include <stddef.h>
 #include <sys/types.h>
 
-int 		ft_strlen(char *str);
+size_t 		ft_strlen(char *str);
 char		*ft_strcpy(char *dst, const char *src);
 int			ft_strcmp(char *s1, char *s2);
 ssize_t		ft_write(int filedes, const void *buf, size_t nbyte);

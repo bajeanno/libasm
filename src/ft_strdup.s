@@ -8,8 +8,8 @@ section .text
 
 ft_strdup:
 	; rdi -> source string to duplicate
-	push rsi
-	push rdi
+	push rbx
+	mov rbx, rdi
 
 	call ft_strlen
 	mov rdi, rax
@@ -18,13 +18,12 @@ ft_strdup:
 	call malloc wrt ..plt
 	test rax, rax
 	je .fail
+
 	mov rdi, rax
-	
-	pop rsi
-	push rsi
+	mov rsi, rbx
 	call ft_strcpy
-	pop rdi
-	pop rsi
 
 .fail:
+	pop rbx
 	ret
+	

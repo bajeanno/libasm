@@ -55,7 +55,7 @@ void test_ft_strcmp() {
 }
 
 void test_ft_strdup() {
-	char *src = "Duplicate me";
+	char *src = "";
 	char *dest = ft_strdup(src);
 	assert(strcmp(src, dest) == 0);
 	free(dest);
