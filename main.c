@@ -1,6 +1,5 @@
 #include <assert.h>
 #include "libasm.h"
-#include <errno.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -74,6 +73,12 @@ void test_ft_write() {
 	close(fd);
 
 	assert(ret1 == ret2);
+
+	ret1 = ft_write(67, str, strlen(str));
+	ret2 = write(67, str, strlen(str));
+
+	assert(ret1 == ret2);
+
 	printf("ft_write tests passed!\n");
 }
 
@@ -91,5 +96,12 @@ void test_ft_read() {
 
 	assert(ret1 == ret2);
 	assert(strcmp(buf1, buf2) == 0);
+
+	ret1 = read(67, buf1, 5);
+	ret2 = read(67, buf2, 5);
+	
+	assert(ret1 == ret2);
+	assert(strcmp(buf1, buf2) == 0);
+
 	printf("ft_read tests passed!\n");
 }
