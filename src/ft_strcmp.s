@@ -5,6 +5,8 @@ section .text
 ft_strcmp:
 	; rdi -> string1 pointer
 	; rsi -> string2 pointer
+	push rsi
+	push rdi
 .compare:
 	mov al, byte [rdi]
 	mov cl, byte [rsi]
@@ -19,4 +21,7 @@ ft_strcmp:
 .done:
 	sub al, cl
 	movsx rax, al
+	
+	pop rdi
+	pop rsi
 	ret

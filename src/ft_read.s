@@ -1,24 +1,27 @@
-global ft_write
+global ft_read
 extern __errno_location
 
 section .text
 
-ft_write:
+ft_read:
 	; rdi -> filedes
 	; rsi -> buffer
 	; rdx -> nbyte
 
-	mov rax, 1
+	mov rax, 0
 	syscall
 	cmp rax, 0
 	jl .error
 	ret
 
 .error:
+    push rsi
+    push rdi
 	neg rax
 	mov rsi, rax
 	call __errno_location wrt ..plt
-	pop rdi
-	mov [rax], rdi
+	mov [rax], rsi
 	mov rax, -1
+	pop rdi
+	pop rsi
 	ret

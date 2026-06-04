@@ -5,6 +5,8 @@ section .text
 ft_strcpy:
 	; rdi -> destination string pointer
 	; rsi -> source string pointer
+	push rdi
+	push rsi
 	mov rax, rdi
 
 .compare_and_copy:
@@ -17,4 +19,6 @@ ft_strcpy:
 	jmp .compare_and_copy
 
 .done:
+    pop rsi
+    pop rdi
 	ret

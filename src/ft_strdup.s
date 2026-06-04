@@ -8,6 +8,7 @@ section .text
 
 ft_strdup:
 	; rdi -> source string to duplicate
+	push rsi
 	push rdi
 
 	call ft_strlen
@@ -18,10 +19,12 @@ ft_strdup:
 	test rax, rax
 	je .fail
 	mov rdi, rax
-
+	
 	pop rsi
+	push rsi
 	call ft_strcpy
-	ret
+	pop rdi
+	pop rsi
 
 .fail:
 	ret
