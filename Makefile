@@ -34,7 +34,7 @@ $(OBJS_D)/%.o: $(SRCS_D)/%.s
 	$(ASMXX) $(ASM_FLAGS) $< -o $@
 
 $(TEST_TARGET): $(TEST_SRC_C) $(NAME)
-	$(CXX) $(TEST_SRC_C) $(NAME) -o $(TEST_TARGET)
+	$(CXX) $(TEST_SRC_C) $(NAME) -o $(TEST_TARGET) -Lasm
 
 test: $(TEST_TARGET)
 	./$(TEST_TARGET)
