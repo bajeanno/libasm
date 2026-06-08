@@ -8,7 +8,10 @@ SRC_ASM		=	ft_strlen.s \
 				ft_strcmp.s \
 				ft_write.s \
 				ft_read.s \
-				ft_strdup.s 
+				ft_strdup.s
+
+TEST_OUTPUT	=	test_write.txt \
+				test_write2.txt
 
 HEADER	 	=	libasm.h
 
@@ -38,13 +41,12 @@ test: $(TEST_TARGET)
 
 clean:
 	rm -rf $(OBJ)
-	rm -rf test_write.txt
-	rm -rf test_write2.txt
+	rm -rf $(OBJS_D)
+	rm -rf $(TEST_OUTPUT)
 	rm -rf $(TEST_TARGET)
 
 fclean: clean
 	rm -rf $(NAME)
-	rm -rf $(OBJS_D)
 
 re: fclean all
 

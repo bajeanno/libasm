@@ -16,10 +16,10 @@ void test_ft_write();
 void test_ft_read();
 
 int main() {
+	test_ft_strdup();
 	test_ft_strlen();
 	test_ft_strcpy();
 	test_ft_strcmp();
-	test_ft_strdup();
 	test_ft_write();
 	test_ft_read();
 	return 0;
@@ -57,6 +57,16 @@ void test_ft_strcmp() {
 void test_ft_strdup() {
 	char *src = "";
 	char *dest = ft_strdup(src);
+	assert(strcmp(src, dest) == 0);
+	free(dest);
+	
+	src = "Duplicate Me";
+	dest = ft_strdup(src);
+	assert(strcmp(src, dest) == 0);
+	free(dest);
+
+	src = "Duplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate MeDuplicate Me";
+	dest = ft_strdup(src);
 	assert(strcmp(src, dest) == 0);
 	free(dest);
 	printf("ft_strdup tests passed!\n");
